@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="theme-color" content="#00d4aa">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <title>10eLotto Alert</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎯 10eLotto Alert</h1>
+    <p class="subtitle">Monitoraggio estrazioni ogni 5 minuti</p>
+  </header>
+
+  <!-- Banner allarmi -->
+  <div id="banner-allarmi" class="banner-allarmi nascosto"></div>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="home">Home</button>
+    <button class="tab" data-tab="ritardi">Ritardi</button>
+    <button class="tab" data-tab="coppie">Coppie</button>
+    <button class="tab" data-tab="archivio">Archivio</button>
+    <button class="tab" data-tab="impostazioni">Impostazioni</button>
+    <button class="tab" data-tab="diagnostica">Diagnostica</button>
+  </nav>
+
+  <main>
+    <!-- HOME -->
+    <section id="tab-home" class="tab-content active">
+      <div class="card stato-sistema">
+        <h2>STATO SISTEMA</h2>
+        <div id="stato-led" class="led">⚪ Caricamento...</div>
+        <div class="info-grid">
+          <div><span class="label">Ultima estrazione</span><span id="ultima-estrazione">—</span></div>
+          <div><span class="label">Ultimo aggiornamento riuscito</span><span id="ultimo-successo">—</span></div>
+          <div><span class="label">Ultimo tentativo</span><span id="ultimo-tentativo">—</span></div>
+          <div><span class="label">Estrazioni archiviate</span><span id="totale-estrazioni">0</span></div>
+          <div><span class="label">Numeri sopra soglia</span><span id="numeri-allerta" class="allerta">0</span></div>
+          <div><span class="label">Coppie sopra soglia</span><span id="coppie-allerta" class="allerta">0</span></div>
+        </div>
+        <button id="btn-aggiorna" class="btn-grande">🔄 AGGIORNA ADESSO</button>
+        <p id="msg-aggiornamento" class="msg"></p>
+      </div>
+
+      <div class="card">
+        <h3>Ultima estrazione ricevuta</h3>
+        <div id="numeri-ultima" class="numeri-grid"></div>
+      </div>
+    </section>
+
+    <!-- RITARDI NUMERI -->
+    <section id="tab-ritardi" class="tab-content">
+      <div class="card">
+        <h2>Ritardo Numeri (1-90)</h2>
+        <p class="hint">Ordinati dal ritardo maggiore. Evidenziati quelli ≥ soglia.</p>
+        <div class="table-wrap">
+          <table id="tabella-ritardi">
+            <thead>
+              <tr><th>Numero</th><th>Ritardo</th><th>Ultima uscita</th><th>Stato</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- COPPIE -->
+    <section id="tab-coppie" class="tab-content">
+      <div class="card">
+        <h2>Ritardo Coppie</h2>
+        <p class="hint">Coppie che superano (o sono vicine) alla soglia impostata.</p>
+        <div class="table-wrap">
+          <table id="tabella-coppie">
+            <thead>
+              <tr><th>Coppia</th><th>Ritardo</th><th>Soglia</th><th>Stato</th></tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARCHIVIO -->
+    <section id="tab-archivio" class="tab-content">
+      <div class="card">
+        <h2>Archivio Estrazioni</h2>
+        <div id="lista-archivio"></div>
+      </div>
+    </section>
+
+    <!-- IMPOSTAZIONI -->
+    <section id="tab-impostazioni" class="tab-content">
+      <div class="card">
+        <h2>Impostazioni</h2>
+        <div class="form-group">
+          <label>Soglia ritardo numeri</label>
+          <input type="number" id="soglia-numeri" min="1" max="500" value="15">
+        </div>
+        <div class="form-group">
+          <label>Soglia ritardo coppie (min 230 consigliato)</label>
+          <input type="number" id="soglia-coppie" min="1" max="2000" value="230">
+        </div>
+        <div class="form-group">
+          <label>Intervallo aggiornamento</label>
+          <input type="text" value="5 minuti" disabled>
+        </div>
+        <button id="btn-salva-impostazioni" class="btn-grande">💾 SALVA IMPOSTAZIONI</button>
+        <p id="msg-impostazioni" class="msg"></p>
+
+        <hr style="border-color:#2a3548;margin:1.5rem 0">
+        <h3>Notifiche Push</h3>
+        <p class="hint">Attiva le notifiche per ricevere allarmi anche a telefono chiuso.</p>
+        <button id="btn-attiva-notifiche" class="btn-grande">🔔 ATTIVA NOTIFICHE</button>
+        <p id="msg-notifiche" class="msg"></p>
+      </div>
+    </section>
+
+    <!-- DIAGNOSTICA -->
+    <section id="tab-diagnostica" class="tab-content">
+      <div class="card">
+        <h2>Diagnostica</h2>
+        <div id="diag-info" class="info-grid"></div>
+        <button id="btn-test-connessione" class="btn-grande">🔌 TEST CONNESSIONE</button>
+        <p id="msg-test" class="msg"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>10eLotto Alert · Dati reali · Nessuna simulazione</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "estrazioni": [],
+  "impostazioni": {
+    "soglia_numeri": "15",
+    "soglia_coppie": "230"
+  },
+  "stato": {
+    "ultimo_successo": null,
+    "ultimo_tentativo": "2026-09-14T23:36:02.687Z",
+    "ultimo_errore": "Sorgente non disponibile. ",
+    "stato": "errore",
+    "nuove": 0,
+    "durata_ms": 1290,
+    "totale": 0
+  },
+  "allarmi": [],
+  "nextId": 1
+}

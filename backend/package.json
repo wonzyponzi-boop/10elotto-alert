@@ -1,0 +1,15 @@
+{
+  "name": "10elotto-alert",
+  "version": "1.0.0",
+  "description": "10eLotto Alert - Monitoraggio estrazioni ogni 5 minuti",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "node-cron": "^3.0.3",
+    "node-fetch": "^2.7.0"
+  }
+}
